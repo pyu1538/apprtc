@@ -47,7 +47,7 @@ func (c *Collider) Run(p int, useTls bool) {
 
 	var e error
 
-	pstr := ":" + strconv.Itoa(p)
+	pstr := "192.168.1.130:" + strconv.Itoa(p)
 	if useTls {
 		config := &tls.Config {
 			// Only allow ciphers that support forward secrecy for iOS9 compatibility:
@@ -65,7 +65,7 @@ func (c *Collider) Run(p int, useTls bool) {
 		}
 		server := &http.Server{ Addr: pstr, Handler: nil, TLSConfig: config }
 
-		e = server.ListenAndServeTLS("/cert/cert.pem", "/cert/key.pem")
+		e = server.ListenAndServeTLS("/Users/peng.yu/collider-cert/cert.pem", "/Users/peng.yu/collider-cert/key.pem")
 	} else {
 		e = http.ListenAndServe(pstr, nil)
 	}

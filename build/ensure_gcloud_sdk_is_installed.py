@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
 import os
 import subprocess
@@ -20,7 +20,7 @@ TEMP_DIR = 'temp'
 GCLOUD_SDK_PATH = os.path.join(TEMP_DIR, GCLOUD_SDK_INSTALL_FOLDER)
 
 def _Download(url, to):
-  print 'Downloading %s to %s...' % (url, to)
+  print('Downloading %s to %s...' % (url, to))
   request = urllib2.urlopen(url)
   try:
     f = urllib2.urlopen(request)
@@ -33,7 +33,7 @@ def _Download(url, to):
 
 
 def _Extract(file_to_extract_path, destination_path):
-  print 'Extracting %s in %s...' % (file_to_extract_path, destination_path)
+  print('Extracting %s in %s...' % (file_to_extract_path, destination_path))
   with tarfile.open(file_to_extract_path, 'r:gz') as tar_file:
     tar_file.extractall(destination_path)
 
@@ -49,7 +49,7 @@ def _EnsureAppEngineIsInstalled(path_to_gcloud_sdk):
 def _Cleanup(file_paths_to_remove):
   for file_path in file_paths_to_remove:
     if os.path.exists(file_path):
-      print 'Cleaning up %s' % file_path
+      print('Cleaning up %s' % file_path)
       os.remove(file_path)
 
 
@@ -58,7 +58,7 @@ def main():
     os.mkdir(TEMP_DIR)
 
   if os.path.isfile(os.path.join(GCLOUD_SDK_PATH, 'bin', 'gcloud')):
-    print 'Already has %s, skipping the download' % GCLOUD_SDK_INSTALL_FOLDER
+    print('Already has %s, skipping the download' % GCLOUD_SDK_INSTALL_FOLDER)
     _EnsureAppEngineIsInstalled(GCLOUD_SDK_PATH)
     _Cleanup([os.path.join(TEMP_DIR, GCLOUD_SDK_TAR_FILE)])
     return

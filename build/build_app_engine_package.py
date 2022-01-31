@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
 """Build App Engine source package.
 """
@@ -23,10 +23,10 @@ dest_path    Path to the root directory to push/deploy GAE from."""
 def call_cmd_and_return_output_lines(cmd):
   try:
     process = subprocess.Popen(cmd, stdout=subprocess.PIPE)
-    output = process.communicate()[0]
+    output = process.communicate()[0].decode()
     return output.split('\n')
   except OSError as e:
-    print str(e)
+    print(str(e))
     return []
 
 
@@ -57,7 +57,7 @@ def build_version_info_file(dest_path):
     with open(dest_path, 'w') as f:
       f.write(json.dumps(version_info))
   except IOError as e:
-    print str(e)
+    print(str(e))
 
 
 # Copy pako zlib from node_modules to third_party/pako

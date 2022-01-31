@@ -8,10 +8,10 @@ import os
 
 # Deprecated domains which we should to redirect to REDIRECT_URL.
 REDIRECT_DOMAINS =  [
-  'apprtc.appspot.com', 'apprtc.webrtc.org', 'www.appr.tc'
+  '192.168.1.130'
 ]
 # URL which we should redirect to if matching in REDIRECT_DOMAINS.
-REDIRECT_URL = 'https://appr.tc'
+REDIRECT_URL = 'http://192.168.1.130:8080'
 
 ROOM_MEMCACHE_EXPIRATION_SEC = 60 * 60 * 24
 MEMCACHE_RETRY_LIMIT = 100
@@ -20,9 +20,9 @@ LOOPBACK_CLIENT_ID = 'LOOPBACK_CLIENT_ID'
 
 # Turn/Stun server override. This allows AppRTC to connect to turn servers
 # directly rather than retrieving them from an ICE server provider.
-ICE_SERVER_OVERRIDE = None
+#ICE_SERVER_OVERRIDE = None
 # Enable by uncomment below and comment out above, then specify turn and stun
-# ICE_SERVER_OVERRIDE  = [
+ICE_SERVER_OVERRIDE  = [
 #   {
 #     "urls": [
 #       "turn:hostname/IpToTurnServer:19305?transport=udp",
@@ -31,14 +31,14 @@ ICE_SERVER_OVERRIDE = None
 #     "username": "TurnServerUsername",
 #     "credential": "TurnServerCredentials"
 #   },
-#   {
-#     "urls": [
-#       "stun:hostname/IpToStunServer:19302"
-#     ]
-#   }
-# ]
+   {
+     "urls": [
+       "stun:147.182.188.245:3478"
+     ]
+   }
+]
 
-ICE_SERVER_BASE_URL = 'https://appr.tc'
+ICE_SERVER_BASE_URL = 'http://192.168.1.130:8080'
 ICE_SERVER_URL_TEMPLATE = '%s/v1alpha/iceconfig?key=%s'
 ICE_SERVER_API_KEY = os.environ.get('ICE_SERVER_API_KEY')
 HEADER_MESSAGE = os.environ.get('HEADER_MESSAGE')
@@ -49,7 +49,7 @@ WSS_INSTANCE_HOST_KEY = 'host_port_pair'
 WSS_INSTANCE_NAME_KEY = 'vm_name'
 WSS_INSTANCE_ZONE_KEY = 'zone'
 WSS_INSTANCES = [{
-    WSS_INSTANCE_HOST_KEY: 'apprtc-ws.webrtc.org:443',
+    WSS_INSTANCE_HOST_KEY: '192.168.1.130:8089',
     WSS_INSTANCE_NAME_KEY: 'wsserver-std',
     WSS_INSTANCE_ZONE_KEY: 'us-central1-a'
 }, {
